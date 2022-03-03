@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+
+        {% assets "css_all" %}
+            <link href="{{ ASSET_URL }}" rel="stylesheet">
+        {% endassets %}
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <link rel="icon" href="{{ url_for('static', filename='img/flask-icon.jpg') }}">
+
+    </head>
+
+    <!-- Page content -->
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="top-nav">
+                    <!-- Home page -->
+                    <a class="top-nav-item" href="/" style="margin-right: 30px"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+
+                    <!-- Table -->
+                    <div>
+                        <span><a class="top-nav-item" href="/table"><i class="fa fa-table" aria-hidden="true"></i> Table</a></span>
+                    </div>
+
+                    <!-- Things -->
+                    <div class="top-nav-item dropdown">
+                        <span class="dropbtn"><i class="fa fa-list" aria-hidden="true"></i> Things</span>
+                        <div class="dropdown-content">
+                            <!-- Chart -->
+                            <a href="/chart"><i class="fa fa-pie-chart" aria-hidden="true"></i> Chart</a>
+                            <!-- Mock Data Grab -->
+                            <a href="/mock-data-grab"><i class="fa fa-cutlery" aria-hidden="true"></i> Mock Data Grab</a>
+                        </div>
+                    </div>
+
+                    <!-- Logged in User -->
+                    <div class="top-nav-item-right" style="cursor: default">
+                        <span>
+                            {{ session['first_name'] }} {{ session['last_name'] }}
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="main">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+             <footer class="footer">
+                <div style="padding: 10px">
+                    <!-- Version -->
+                    <div style="padding-left: 30px;">
+                      Version: {{ session['version'] }}
+                    </div>
+
+                    <div style="width: 150px; margin: 0 auto; margin-top: 20px">
+                        <div style="float: left; width: 150px;">
+                            <!-- Home -->
+                            <div class="footer-item">
+                              <a href="/">
+                                <i class="fa fa-home" aria-hidden="true"></i> Home
+                              </a>
+                            </div>
+
+                            <!-- Git -->
+                            <div class="footer-item">
+                              <a href="https://github.com/EricDalrymple91/simple-flask-app" target="_blank">
+                                <i class="fa fa-github" aria-hidden="true"></i> GitHub
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
+
+        </div>
+
+    </body>
+
+      {% assets "js_all" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+      {% endassets %}
+
+</html>

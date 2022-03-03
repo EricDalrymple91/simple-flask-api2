@@ -1,0 +1,20 @@
+<div>
+    <div class="chart-div">
+
+        <div class="chart-div-chart">
+            <canvas id="chart"></canvas>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function jsonEscape(str)  {
+        return str.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t");
+    }
+
+    const chartData = '{{ chart_data | tojson | safe }}';
+    const chartDataObj = JSON.parse(jsonEscape(chartData));
+
+    new Chart(document.getElementById("chart"), chartDataObj);
+</script>

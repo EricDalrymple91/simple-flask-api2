@@ -1,0 +1,72 @@
+<div class="core-table-div">
+
+        <table border="0" cellpadding="0" cellspacing="0" class="core-table" id="this-table">
+
+            <thead class="core-table-thead">
+                <tr class="core-table-thead-tr">
+
+                    <!-- Title -->
+                    <th class="core-table-th">
+                        Title
+                        <i class="fa fa-sort" aria-hidden="true"  id="this-table-sort-0" onclick="tableSort(0)"></i>
+                    </th>
+
+                    <!-- Date -->
+                    <th class="core-table-th">
+                        Date
+                        <i class="fa fa-sort" aria-hidden="true"  id="this-table-sort-1" onclick="tableSort(1)"></i>
+                    </th>
+
+                    <!-- Comment -->
+                    <th class="core-table-th">
+                        Comment
+                        <i class="fa fa-sort" aria-hidden="true"  id="this-table-sort-2" onclick="tableSort(2)"></i>
+                    </th>
+
+                    <!-- Count -->
+                    <th class="core-table-th">
+                        Count
+                        <i class="fa fa-sort" aria-hidden="true"  id="this-table-sort-3" onclick="tableSort(3)"></i>
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody class="core-table-tbody">
+
+                {% for row in rows %}
+
+                    {% set title = row['title'] %}
+
+                    <tr class="core-table-tbody-tr">
+
+                        <!-- Title -->
+                        <td class="core-table-td">
+                            {{ title }} <button class="copy-button" onclick="copyToClipboard('{{ title }}')"><i class="fa fa-files-o" aria-hidden="true"></i></button>
+                        </td>
+
+                        <!-- Date -->
+                        <td class="core-table-td">
+                            {{ row['date'] }}
+                        </td>
+
+                        <!-- Comment -->
+                        <td class="core-table-td">
+                            {{ row['comment'] }}
+                        </td>
+
+                        <!-- Count -->
+                        <td class="core-table-td">
+                            {{ row['count'] }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

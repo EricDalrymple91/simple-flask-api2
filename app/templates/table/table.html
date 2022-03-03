@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Table</title>
+    </head>
+
+    <body>
+        <div class="container-1">
+
+            <h2><i class="fa fa-table" aria-hidden="true"></i> Table</h2>
+
+            <!-- Data Area -->
+            <div class="loadout">
+                <img src="{{ url_for('static', filename='img/loading.gif') }}" alt="loading">
+            </div>
+            <div class="data-area"></div>
+
+        </div>
+
+    </body>
+
+    <script>
+        $(document).ajaxStart(function(){
+            $(".loadout").css("display", "block");
+        });
+        $(document).ajaxComplete(function(){
+            $(".loadout").css("display", "none");
+        });
+
+        $.ajax({url: '/table/contents'})
+            .done(function(response){
+            $(".data-area").append(response)
+        })
+    </script>
+
+{% endblock %}

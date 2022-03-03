@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Mock Data Grab</title>
+    </head>
+
+    <body>
+        <div class="container-1">
+
+            <h2><i class="fa fa-cutlery" aria-hidden="true"></i> Mock Data Grab</h2>
+
+            <!-- Form -->
+            <form style="display: inline-grid">
+
+                <!-- Input Selection -->
+                <label for="selectItem">Item:</label>
+                <select name="selectItem" id="selectItem" style="width: 100px; margin: auto; margin-bottom: 10px">
+                    <option value="albums" selected="selected">Albums</option>
+                    <option value="photos">Photos</option>
+                </select>
+
+            </form>
+
+            <div style="margin-top: 10px">
+                <button class="core-button" id="mock-data-grab-btn" onclick="mockDataGrab()">
+                    Submit
+                </button>
+            </div>
+
+            <!-- Data Area -->
+            <div class="loadout">
+                <img src="{{ url_for('static', filename='img/loading.gif') }}" alt="loading">
+            </div>
+            <div class="data-area"></div>
+
+        </div>
+
+    </body>
+
+    <script>
+        $(document).ajaxStart(function(){
+            $(".loadout").css("display", "block");
+        });
+        $(document).ajaxComplete(function(){
+            $(".loadout").css("display", "none");
+        });
+
+        $.ajax({url: '/mock-data-grab/contents'})
+            .done(function(response){
+            $(".data-area").append(response)
+        })
+    </script>
+
+{% endblock %}
